@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="1920" viewBox="0 0 1120 1920" style="max-width:100%;height:auto;">
+  <defs>
+    <marker id="flecha" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#5c6b7a"/>
+    </marker>
+    <marker id="flecha-verde" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0f6e6e"/>
+    </marker>
+    <style>
+      .titulo { font: 700 22px "Segoe UI", Arial, sans-serif; fill: #ffffff; }
+      .subtitulo { font: 400 14px "Segoe UI", Arial, sans-serif; fill: #d7e3ee; }
+      .caja-titulo { font: 700 15px "Segoe UI", Arial, sans-serif; fill: #16324f; }
+      .herramienta { font: 600 13px "Segoe UI", Arial, sans-serif; fill: #0f6e6e; }
+      .caja-texto { font: 400 13px "Segoe UI", Arial, sans-serif; fill: #3d4c5c; }
+      .nota { font: 400 13px "Segoe UI", Arial, sans-serif; fill: #3d4c5c; }
+      .ciclo { font: 600 12px "Segoe UI", Arial, sans-serif; fill: #0f6e6e; }
+    </style>
+  </defs>
+  <rect width="1120" height="1920" fill="#f7f4ef"/>
+  <rect width="1120" height="86" fill="#16324f"/>
+  <text class="titulo" x="36" y="36">Pipeline MLOps para valoración de síntomas</text>
+  <text class="subtitulo" x="36" y="62">De los datos al médico, en su computador o por una petición, y de vuelta</text>
+
+  <rect x="36" y="104" width="1048" height="156" rx="12" fill="#f3f7fb" stroke="#1d4e89" stroke-width="2.5"/>
+  <text class="caja-titulo" x="56" y="132">Airflow ordena el trabajo por lotes</text>
+  <text class="caja-texto" x="56" y="156">Lote clínico nuevo: validar calidad y publicar el conjunto versionado.</text>
+  <text class="caja-texto" x="56" y="176">Comunes: reentrenar cada trimestre y reemplazar solo si pasa la puerta.</text>
+  <text class="caja-texto" x="56" y="196">Huérfanas: reentrenar solo cuando entra un grupo nuevo de confirmaciones.</text>
+  <text class="caja-texto" x="56" y="224">La consulta de un paciente no espera este calendario.</text>
+
+  <rect x="190" y="280" width="740" height="108" rx="12" fill="#ffffff" stroke="#c5d0dc" stroke-width="1.5"/>
+  <text class="caja-titulo" x="210" y="308">E1 · Fuentes clínicas</text>
+  <text class="herramienta" x="210" y="330">Lote identificado, solo lectura</text>
+  <text class="caja-texto" x="210" y="354">Historia de la sede y confirmación del especialista o del laboratorio.</text>
+  <text class="caja-texto" x="210" y="374">El catálogo de fenotipos no aporta pacientes.</text>
+
+  <rect x="190" y="408" width="740" height="124" rx="12" fill="#ffffff" stroke="#c5d0dc" stroke-width="1.5"/>
+  <text class="caja-titulo" x="210" y="436">E2 · Calidad y privacidad</text>
+  <text class="herramienta" x="210" y="458">Python, los mismos rangos que el servicio</text>
+  <text class="caja-texto" x="210" y="482">Fiebre 34 a 43 °C, dolor 0 a 10, días 0 a 3650, síntomas 0 a 30.</text>
+  <text class="caja-texto" x="210" y="502">Identificadores aparte. Un lote rechazado no sigue.</text>
+
+  <rect x="190" y="552" width="740" height="108" rx="12" fill="#ffffff" stroke="#c5d0dc" stroke-width="1.5"/>
+  <text class="caja-titulo" x="210" y="580">E3 · Conjunto versionado</text>
+  <text class="herramienta" x="210" y="602">Manifiesto en Git</text>
+  <text class="caja-texto" x="210" y="626">Conjunto vN inmutable, partido por paciente.</text>
+  <text class="caja-texto" x="210" y="646">Otro período queda fuera y no elige umbrales.</text>
+
+  <rect x="190" y="680" width="740" height="124" rx="12" fill="#fff8ef" stroke="#a15c07" stroke-width="2.5"/>
+  <text class="caja-titulo" x="210" y="708">Spark · solo si el lote no cabe en una máquina</text>
+  <text class="herramienta" x="210" y="730">Parte las filas. Si cabe, sigue pandas</text>
+  <text class="caja-texto" x="210" y="754">Limpieza, variables y puntuación del lote grande.</text>
+  <text class="caja-texto" x="210" y="774">Una consulta de un paciente no entra aquí.</text>
+
+  <rect x="190" y="824" width="740" height="108" rx="12" fill="#ffffff" stroke="#c5d0dc" stroke-width="1.5"/>
+  <text class="caja-titulo" x="210" y="852">E4 · Variables</text>
+  <text class="herramienta" x="210" y="874">La misma función al entrenar y al servir</text>
+  <text class="caja-texto" x="210" y="898">Fiebre, dolor, días, número de síntomas, edad y sexo.</text>
+  <text class="caja-texto" x="210" y="918">Un síntoma desconocido se marca. No se inventa un código.</text>
+
+  <rect x="36" y="952" width="500" height="148" rx="12" fill="#ffffff" stroke="#0f6e6e" stroke-width="2.5"/>
+  <text class="caja-titulo" x="56" y="980">E5a · Enfermedades comunes</text>
+  <text class="herramienta" x="56" y="1002">scikit-learn</text>
+  <text class="caja-texto" x="56" y="1026">Al menos 200 confirmados.</text>
+  <text class="caja-texto" x="56" y="1046">Referencia: regresión logística.</text>
+  <text class="caja-texto" x="56" y="1066">Principal: potenciación de gradiente.</text>
+
+  <rect x="584" y="952" width="500" height="148" rx="12" fill="#ffffff" stroke="#a15c07" stroke-width="2.5"/>
+  <text class="caja-titulo" x="604" y="980">E5b · Enfermedades huérfanas</text>
+  <text class="herramienta" x="604" y="1002">Adaptación con pocos casos</text>
+  <text class="caja-texto" x="604" y="1026">De 20 a 199 confirmados.</text>
+  <text class="caja-texto" x="604" y="1046">Reusa la representación ya entrenada.</text>
+  <text class="caja-texto" x="604" y="1066">Por debajo de 20: alerta, sin nombre.</text>
+
+  <rect x="190" y="1120" width="740" height="140" rx="12" fill="#ffffff" stroke="#c5d0dc" stroke-width="1.5"/>
+  <text class="caja-titulo" x="210" y="1148">E6 · Validación y puerta</text>
+  <text class="herramienta" x="210" y="1170">Métricas del régimen y pytest</text>
+  <text class="caja-texto" x="210" y="1194">Comunes: sensibilidad y calibración frente a la referencia.</text>
+  <text class="caja-texto" x="210" y="1214">Huérfanas: sensibilidad de la alerta al menos 0,80.</text>
+  <text class="caja-texto" x="210" y="1234">Cinco estados fijos y rangos inválidos. Sin esto no se publica.</text>
+
+  <rect x="190" y="1280" width="740" height="108" rx="12" fill="#ffffff" stroke="#c5d0dc" stroke-width="1.5"/>
+  <text class="caja-titulo" x="210" y="1308">E7 · Registro de la versión</text>
+  <text class="herramienta" x="210" y="1330">Manifiesto versionado</text>
+  <text class="caja-texto" x="210" y="1354">Datos, código, métricas y umbrales juntos.</text>
+  <text class="caja-texto" x="210" y="1374">No se despliega un archivo suelto.</text>
+
+  <rect x="36" y="1408" width="500" height="136" rx="12" fill="#ffffff" stroke="#0f6e6e" stroke-width="2.5"/>
+  <text class="caja-titulo" x="56" y="1436">E8 · Computador del médico</text>
+  <text class="herramienta" x="56" y="1458">Docker, en local</text>
+  <text class="caja-texto" x="56" y="1482">docker run de la imagen publicada.</text>
+  <text class="caja-texto" x="56" y="1502">Sirve cuando los recursos son bajos.</text>
+
+  <rect x="584" y="1408" width="500" height="136" rx="12" fill="#ffffff" stroke="#16324f" stroke-width="2.5"/>
+  <text class="caja-titulo" x="604" y="1436">E8 · Petición al servidor</text>
+  <text class="herramienta" x="604" y="1458">La misma imagen</text>
+  <text class="caja-texto" x="604" y="1482">Servidor del hospital o instancia pequeña.</text>
+  <text class="caja-texto" x="604" y="1502">El médico llama la misma API.</text>
+
+  <rect x="190" y="1564" width="740" height="124" rx="12" fill="#ffffff" stroke="#c5d0dc" stroke-width="1.5"/>
+  <text class="caja-titulo" x="210" y="1592">E9 · Monitoreo</text>
+  <text class="herramienta" x="210" y="1614">Reporte de predicciones aceptadas</text>
+  <text class="caja-texto" x="210" y="1638">Conteos, últimas cinco consultas y deriva de la entrada.</text>
+  <text class="caja-texto" x="210" y="1658">La sensibilidad real espera a que la etiqueta madure.</text>
+
+  <rect x="190" y="1708" width="740" height="124" rx="12" fill="#ffffff" stroke="#c5d0dc" stroke-width="1.5"/>
+  <text class="caja-titulo" x="210" y="1736">E10 · Reentrenamiento</text>
+  <text class="herramienta" x="210" y="1758">Airflow vuelve a lanzar el entrenamiento</text>
+  <text class="caja-texto" x="210" y="1782">Solo etiquetas maduras. Reemplaza al modelo solo si gana E6.</text>
+  <text class="caja-texto" x="210" y="1802">La línea verde devuelve las confirmaciones a E3.</text>
+
+  <path d="M560 260 V280" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+  <path d="M560 388 V408" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+  <path d="M560 532 V552" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+  <path d="M560 660 V680" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+  <path d="M560 804 V824" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+  <path d="M560 932 V942 H286 V952" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+  <path d="M560 932 V942 H834 V952" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+  <path d="M286 1100 V1110 H560 V1120" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+  <path d="M834 1100 V1110 H560" fill="none" stroke="#5c6b7a" stroke-width="2"/>
+  <path d="M560 1260 V1280" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+  <path d="M560 1388 V1398 H286 V1408" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+  <path d="M560 1388 V1398 H834 V1408" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+  <path d="M286 1544 V1554 H560 V1564" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+  <path d="M834 1544 V1554 H560" fill="none" stroke="#5c6b7a" stroke-width="2"/>
+  <path d="M560 1688 V1708" fill="none" stroke="#5c6b7a" stroke-width="2" marker-end="url(#flecha)"/>
+
+  <path d="M190 1770 H16 V606 H190" fill="none" stroke="#0f6e6e" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#flecha-verde)"/>
+  <text class="ciclo" x="14" y="1188" text-anchor="middle" transform="rotate(-90 14 1188)">Confirmaciones nuevas</text>
+
+  <text class="nota" x="36" y="1868">Verde: enfermedades comunes y retorno de confirmaciones a E3. Ámbar: huérfanas y Spark.</text>
+  <text class="nota" x="36" y="1890">Azul: Airflow, solo el trabajo por lotes. Si el candidato no pasa E6, no se despliega.</text>
+</svg>
