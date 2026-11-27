@@ -4,6 +4,12 @@ Cambios de la propuesta inicial a esta propuesta. El problema es el mismo: estim
 
 ## Qué cambió
 
+### Aclaraciones para llevar la propuesta a la práctica
+
+Se precisa cómo preparar las variables compartidas para las enfermedades huérfanas y se aclara que la alerta genérica debe validarse. También se detalla la separación de la prueba para clases pequeñas y se presentan los umbrales como puntos de partida.
+
+Se distingue el servicio simulado de la unidad 2 del modelo futuro: el contrato deberá actualizarse si se agregan variables, confianza o alertas. Se añaden indicaciones iniciales sobre almacenamiento, monitoreo y comparación entre pandas y Spark. Las reglas del ejercicio son una simulación y requieren validación antes de cualquier uso real.
+
 ### Cada etapa nombra la herramienta y el motivo
 
 La propuesta inicial describía el flujo y nombraba la regresión logística, la potenciación de gradiente y el contenedor. El resto de las etapas no decía con qué se hacían.
@@ -32,7 +38,7 @@ Esta propuesta añade `ENFERMEDAD TERMINAL`. La regla terminal se evalúa antes 
 
 La propuesta inicial promovía el modelo por la métrica del régimen y por una muestra de falsos negativos revisada por un médico. Las pruebas del servicio se mencionaban aparte.
 
-Esta propuesta mantiene esa métrica y esa revisión. Además, la imagen solo se publica si pytest pasa: los cinco casos fijos y los rangos inválidos. Esas pruebas corren sobre la imagen.
+Esta propuesta mantiene esa métrica y esa revisión. Además, la imagen solo se publica si pytest pasa: los cinco casos fijos y los rangos inválidos. Se propone añadir pruebas sobre la imagen construida; en la unidad 2 las pruebas corren en el entorno de Actions antes de construirla.
 
 ### El registro es un manifiesto
 
@@ -59,6 +65,6 @@ Esta propuesta usa Airflow para esos tres trabajos, en ese orden, y solo reempla
 - Los mínimos de partida: 200 para una clase común, de 20 a 199 para una huérfana, y por debajo de 20 sin nombre.
 - La partición por paciente, con un bloque de otro período que no elige umbrales.
 - La privacidad: los identificadores directos no entran al entrenamiento.
-- La etiqueta tardía: un episodio sin diagnóstico no se entrena como sano hasta cumplir 12 meses o hasta la confirmación.
+- La etiqueta tardía: un episodio sin diagnóstico requiere confirmación o revisión antes de etiquetarlo; cumplir 12 meses no basta por sí solo.
 - La exactitud global no es puerta. En huérfanas se mira la sensibilidad de la alerta.
 - Quedan fuera el texto libre, la imagen diagnóstica y la certificación como dispositivo médico.
